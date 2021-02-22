@@ -7,7 +7,7 @@ $nama   = $_POST['nama'];
 $url    = $_POST['url'];
 $logo = $_FILES['logo']['name'];
 $tmp = $_FILES['logo']['tmp_name'];
-$path = "foto/" . $logo;
+$path = "../foto/" . $logo;
 $status = $_POST['status'];
 $result['pesan'] = "";
 
@@ -24,8 +24,18 @@ if ($nama == "") {
         $sql = $connect->query("UPDATE tb_bank SET nama='$nama',url='$url',logo='$logo',status='$status' WHERE id='$id' ");
         if ($sql) {
             $result['pesan'] = "Data berhasil di edit";
+            echo '<script>
+            setTimeout(function() {
+                $("#modalUser .close").click();
+            }, 2000);           
+            </script>';
         } else {
-            $result['pesan'] = "data gagal di edit";
+            $result['pesan'] = "Data gagal di edit";
+            echo '<script>
+            setTimeout(function() {
+                $("#modalUser .close").click();
+            }, 2000);           
+            </script>';
         }
     }
 }
